@@ -76,7 +76,7 @@ with col2:
 
 with st.container():
     st.write("""Total Number of Movies in Each Genre""")
-    genre_count = movies_data.groupby('genre')['name'].count().rename()
+    genre_count = movies_data.groupby('genre')['name'].count()
     genre_count = genre_count.reset_index()
     figpx_pie = px.pie(genre_count, values='name',names='genre')
     st.plotly_chart(figpx_pie)
