@@ -62,7 +62,7 @@ col1, col2 = st.columns([2,3])
 with col1:
     st.write("""#### Lists of movies filtered by year and Genre """)
     dataframe_genre_year = movies_data[new_genre_year]\
-    .groupby(['name',  'genre'])['year'].astype(int)
+    .groupby(['name',  'genre'])['year'].sum()
     dataframe_genre_year = dataframe_genre_year.reset_index()
     st.dataframe(dataframe_genre_year, width = 400)
 
@@ -73,4 +73,12 @@ with col2:
     rating_count_year = rating_count_year.reset_index()
     figpx = px.line(rating_count_year, x = 'genre', y = 'score')
     st.plotly_chart(figpx)
+
+with st.container():
+    st.write("""Total Number of Movies in Each Genre""")
+    genre_count = movies_data.groupby('genre')['name'].count().rename()
+    genre_count = genre_count.reset_index()
+    figpx_pie = px.pie(genre_count, values='name',names='genre')
+    st.plotly_chart(figpx_pie)
+
 
