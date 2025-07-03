@@ -74,3 +74,5 @@ with col2:
     figpx = px.line(rating_count_year, x = 'genre', y = 'score')
     st.plotly_chart(figpx)
 
+
+
